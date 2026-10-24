@@ -1,0 +1,21 @@
+{
+  "name": "Adithyan | Biolink & Portfolio",
+  "short_name": "Adithyan",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06070a",
+  "theme_color": "#e10600",
+  "description": "Adithyan's Full-Stack Biolink and Portfolio Hub",
+  "icons": [
+    {
+      "src": "assets/ghostly_avatar.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/ghostly_avatar.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

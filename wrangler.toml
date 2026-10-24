@@ -1,0 +1,7 @@
+name = "adithyan-biolink"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
+
+[vars]
+SPOTIFY_USER_ID = "31zymccmdqzrzvjkdryasaqmkwlq"
+GITHUB_USERNAME = "Adithyan1809"

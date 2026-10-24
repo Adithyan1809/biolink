@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Environment Variables & Secrets (CRITICAL - DO NOT COMMIT)
+.env
+.env.local
+.env.*.local
+
+# Logs & Runtime data
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Cloudflare & Wrangler local state
+.wrangler/
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

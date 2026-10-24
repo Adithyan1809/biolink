@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: adithyan-biolink
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SPOTIFY_API_KEY
+        value: spak_wt6wlVzL9xfo7f9i61SetfXogvUfGMtr
+      - key: SPOTIFY_USER_ID
+        value: 31zymccmdqzrzvjkdryasaqmkwlq
+      - key: GITHUB_USERNAME
+        value: Adithyan1809

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "msg_1792875577930_5b80z",
+    "name": "Automated Tester",
+    "message": "Hello from fullstack test runner!",
+    "contact": "tester@dev.local",
+    "ip": "::1",
+    "createdAt": "2026-10-24T20:59:37.930Z"
+  },
+  {
+    "id": "msg_1792875960993_wtgo4",
+    "name": "Vibe Checker <script>alert(1)</script>",
+    "message": "Clean code & full-stack architecture looks incredible! 🚀",
+    "contact": "@vibecheck",
+    "ip": "::1",
+    "createdAt": "2026-10-24T21:06:00.993Z"
+  },
+  {
+    "id": "msg_1792876050959_fkyp5",
+    "name": "Vibe Checker alert(1)",
+    "message": "Clean code & full-stack architecture looks incredible! 🚀",
+    "contact": "@vibecheck",
+    "ip": "::1",
+    "createdAt": "2026-10-24T21:07:30.960Z"
+  },
+  {
+    "id": "msg_1792876071392_e8ryk",
+    "name": "Vibe Checker alert(1)",
+    "message": "Clean code & full-stack architecture looks incredible! 🚀",
+    "contact": "@vibecheck",
+    "ip": "::1",
+    "createdAt": "2026-10-24T21:07:51.392Z"
+  },
+  {
+    "id": "msg_1792876888534_uk3c7",
+    "name": "Vibe Checker alert(1)",
+    "message": "Clean code & full-stack architecture looks incredible! 🚀",
+    "contact": "@vibecheck",
+    "ip": "::1",
+    "createdAt": "2026-10-24T21:21:28.535Z"
+  },
+  {
+    "id": "msg_1792876909621_y58xv",
+    "name": "Vibe Checker alert(1)",
+    "message": "Clean code & full-stack architecture looks incredible! 🚀",
+    "contact": "@vibecheck",
+    "ip": "::1",
+    "createdAt": "2026-10-24T21:21:49.621Z"
+  }
+]
