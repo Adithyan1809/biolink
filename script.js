@@ -683,53 +683,280 @@ function populateLayout3(cfg = {}) {
   // ── 1. Simple Centered Haunt.gg Hero (Matching User Reference Image) ──
   populateHauntHero(cfg);
 
-  // ── 2. Interactive Polaroid Photo Gallery (Step 3 - Click to cycle) ──
-  const polaroidCard = document.getElementById("polaroid-card");
+  // ── 2. Interactive Draggable Polaroid Photo Deck with Lightbox & Shutter SFX ──
+  const dragCard = document.getElementById("polaroid-drag-card");
   const polaroidImg = document.getElementById("polaroid-img");
   const polaroidTag = document.getElementById("polaroid-tag");
   const polaroidCaption = document.getElementById("polaroid-caption");
   const polaroidCounter = document.getElementById("polaroid-counter");
+  const polaroidDate = document.getElementById("polaroid-date");
+  const tossBtn = document.getElementById("polaroid-hint-text");
+  const zoomBtn = document.getElementById("polaroid-zoom-btn");
 
   const polaroids = l3Data.polaroids || [
     {
-      url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
-      caption: "late night desk setup • 3:42 AM",
-      tag: "BATTLESTATION"
+      url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&auto=format&fit=crop&q=85",
+      caption: "late night coding session • 3:42 AM",
+      tag: "WORKSPACE",
+      date: "'26 10 24",
+      exif: "35mm • ISO 400 • f/1.8"
     }
   ];
 
-  let currentPhotoIdx = 0;
-  function updatePolaroid(idx, animate = true) {
-    const photo = polaroids[idx];
-    if (!photo) return;
-    if (animate && polaroidImg) {
-      polaroidImg.style.transition = "opacity 0.18s ease, transform 0.18s ease";
-      polaroidImg.style.opacity = "0";
-      polaroidImg.style.transform = "scale(0.96) rotate(-1deg)";
+  // Synthesize authentic analog camera shutter sound (zero external audio file needed)
+  function playCameraShutterSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      if (ctx.state === "suspended") ctx.resume();
+
+      const t = ctx.currentTime;
+      
+      // Stage 1: Mechanical shutter latch snap
+      const osc = ctx.createOscillator();
+      const oscGain = ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(1200, t);
+      osc.frequency.exponentialRampToValueAtTime(140, t + 0.025);
+      oscGain.gain.setValueAtTime(0.25, t);
+      oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.035);
+      osc.connect(oscGain);
+      oscGain.connect(ctx.destination);
+      osc.start(t);
+      osc.stop(t + 0.04);
+
+      // Stage 2: Curtain blade snap noise burst
+      const bufferSize = Math.floor(ctx.sampleRate * 0.04);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+      const filter = ctx.createBiquadFilter();
+      filter.type = "bandpass";
+      filter.frequency.setValueAtTime(2400, t + 0.025);
+      filter.Q.setValueAtTime(3, t + 0.025);
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.28, t + 0.025);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.065);
+      noise.connect(filter);
+      filter.connect(noiseGain);
+      noiseGain.connect(ctx.destination);
+      noise.start(t + 0.025);
+      noise.stop(t + 0.07);
+    } catch (_) {}
+  }
+
+  let currentIndex = 0;
+  let isDragging = false;
+  let startX = 0;
+  let startY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let isAnimating = false;
+
+  function renderPolaroid(idx) {
+    const p = polaroids[idx];
+    if (!p) return;
+    if (polaroidImg) polaroidImg.src = p.url;
+    if (polaroidTag) polaroidTag.textContent = p.tag || "SNAPSHOT";
+    if (polaroidCaption) polaroidCaption.textContent = p.caption || "";
+    if (polaroidCounter) polaroidCounter.textContent = `${idx + 1} / ${polaroids.length}`;
+    if (polaroidDate) polaroidDate.textContent = p.date || "'26 10 25";
+  }
+
+  function tossCard(direction = 1) {
+    if (isAnimating || !dragCard) return;
+    isAnimating = true;
+    playCameraShutterSound();
+
+    dragCard.classList.remove("tossed-left", "tossed-right", "is-dragging");
+    dragCard.classList.add(direction > 0 ? "tossed-right" : "tossed-left");
+
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % polaroids.length;
+      renderPolaroid(currentIndex);
+      dragCard.style.transform = "";
+      dragCard.classList.remove("tossed-left", "tossed-right");
+
+      // Smooth elastic entrance bounce for the newly surfaced card
+      dragCard.style.transform = "scale(0.92) rotate(-3deg)";
+      dragCard.style.opacity = "0.75";
       setTimeout(() => {
-        polaroidImg.src = photo.url;
-        if (polaroidTag) polaroidTag.textContent = photo.tag;
-        if (polaroidCaption) polaroidCaption.textContent = photo.caption;
-        if (polaroidCounter) polaroidCounter.textContent = `${idx + 1} / ${polaroids.length}`;
-        polaroidImg.style.opacity = "1";
-        polaroidImg.style.transform = "scale(1) rotate(0deg)";
-      }, 180);
-    } else {
-      if (polaroidImg) polaroidImg.src = photo.url;
-      if (polaroidTag) polaroidTag.textContent = photo.tag;
-      if (polaroidCaption) polaroidCaption.textContent = photo.caption;
-      if (polaroidCounter) polaroidCounter.textContent = `${idx + 1} / ${polaroids.length}`;
+        dragCard.style.transition = "transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease";
+        dragCard.style.transform = "rotate(-1.2deg)";
+        dragCard.style.opacity = "1";
+        setTimeout(() => {
+          dragCard.style.transition = "";
+          isAnimating = false;
+        }, 280);
+      }, 50);
+    }, 320);
+  }
+
+  // Pointer drag gestures (mouse + touch with physical velocity tilt)
+  if (dragCard) {
+    const onStart = (e) => {
+      if (isAnimating) return;
+      if (e.target.closest("#polaroid-zoom-btn")) return;
+      isDragging = true;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      startX = clientX;
+      startY = clientY;
+      currentX = 0;
+      currentY = 0;
+      dragCard.classList.add("is-dragging");
+    };
+
+    const onMove = (e) => {
+      if (!isDragging) return;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      currentX = clientX - startX;
+      currentY = clientY - startY;
+
+      // Realistic tilt & drag rotation
+      const rot = currentX * 0.08 - 1.2;
+      dragCard.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) rotate(${rot}deg)`;
+    };
+
+    const onEnd = () => {
+      if (!isDragging) return;
+      isDragging = false;
+      dragCard.classList.remove("is-dragging");
+
+      if (Math.abs(currentX) > 75) {
+        tossCard(currentX > 0 ? 1 : -1);
+      } else {
+        // Elastic snap back to deck
+        dragCard.style.transition = "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)";
+        dragCard.style.transform = "rotate(-1.2deg)";
+        setTimeout(() => {
+          dragCard.style.transition = "";
+        }, 300);
+      }
+    };
+
+    dragCard.addEventListener("mousedown", onStart);
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onEnd);
+
+    dragCard.addEventListener("touchstart", onStart, { passive: true });
+    window.addEventListener("touchmove", onMove, { passive: true });
+    window.addEventListener("touchend", onEnd);
+
+    if (tossBtn) {
+      tossBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        tossCard(1);
+      });
     }
   }
 
-  updatePolaroid(0, false);
+  // ── Fullscreen Polaroid Lightbox Modal ──
+  const lightbox = document.getElementById("polaroid-lightbox");
+  const lbImg = document.getElementById("lightbox-img");
+  const lbTag = document.getElementById("lightbox-tag");
+  const lbCaption = document.getElementById("lightbox-caption");
+  const lbDate = document.getElementById("lightbox-date");
+  const lbExif = document.getElementById("lightbox-exif");
+  const lbCounter = document.getElementById("lightbox-counter");
+  const lbClose = document.getElementById("lightbox-close-btn");
+  const lbPrev = document.getElementById("lightbox-prev-btn");
+  const lbNext = document.getElementById("lightbox-next-btn");
 
-  if (polaroidCard) {
-    polaroidCard.addEventListener("click", () => {
-      currentPhotoIdx = (currentPhotoIdx + 1) % polaroids.length;
-      updatePolaroid(currentPhotoIdx, true);
+  let lightboxIdx = 0;
+
+  function updateLightbox(idx) {
+    const p = polaroids[idx];
+    if (!p) return;
+    lightboxIdx = idx;
+    if (lbImg) {
+      lbImg.style.opacity = "0";
+      lbImg.style.transform = "scale(0.97)";
+      setTimeout(() => {
+        lbImg.src = p.url;
+        if (lbTag) lbTag.textContent = p.tag || "SNAPSHOT";
+        if (lbCaption) lbCaption.textContent = p.caption || "";
+        if (lbDate) lbDate.textContent = p.date || "'26 10 25";
+        if (lbExif) lbExif.textContent = p.exif || "35mm • ISO 400 • f/1.8";
+        if (lbCounter) lbCounter.textContent = `${idx + 1} / ${polaroids.length}`;
+        lbImg.style.opacity = "1";
+        lbImg.style.transform = "scale(1)";
+      }, 150);
+    }
+  }
+
+  function openLightbox(idx = currentIndex) {
+    if (!lightbox) return;
+    playCameraShutterSound();
+    updateLightbox(idx);
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+  }
+
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+  }
+
+  if (zoomBtn) {
+    zoomBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openLightbox(currentIndex);
     });
   }
+
+  if (dragCard) {
+    dragCard.addEventListener("dblclick", () => {
+      openLightbox(currentIndex);
+    });
+  }
+
+  if (lbClose) lbClose.addEventListener("click", closeLightbox);
+  if (lightbox) {
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+  }
+
+  if (lbPrev) {
+    lbPrev.addEventListener("click", () => {
+      playCameraShutterSound();
+      lightboxIdx = (lightboxIdx - 1 + polaroids.length) % polaroids.length;
+      updateLightbox(lightboxIdx);
+    });
+  }
+
+  if (lbNext) {
+    lbNext.addEventListener("click", () => {
+      playCameraShutterSound();
+      lightboxIdx = (lightboxIdx + 1) % polaroids.length;
+      updateLightbox(lightboxIdx);
+    });
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if (!lightbox || !lightbox.classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") {
+      playCameraShutterSound();
+      lightboxIdx = (lightboxIdx - 1 + polaroids.length) % polaroids.length;
+      updateLightbox(lightboxIdx);
+    }
+    if (e.key === "ArrowRight") {
+      playCameraShutterSound();
+      lightboxIdx = (lightboxIdx + 1) % polaroids.length;
+      updateLightbox(lightboxIdx);
+    }
+  });
+
+  renderPolaroid(0);
 
   // ── 3. Interactive Vinyl Turntable Sound Deck (Phonk Player) ──
   const bgAudio = document.getElementById("bg-audio");

@@ -456,21 +456,38 @@
               </div>
             </div>
 
-            <!-- Bento 2: Interactive Polaroid Photo Gallery (Span 6) -->
-            <div class="bento-card bento-polaroid tilt-card" id="polaroid-card" role="button" title="Click to cycle photos!">
+            <!-- Bento 2: Interactive Draggable Polaroid Photo Deck (Span 6) -->
+            <div class="bento-card bento-polaroid bento-polaroid-deck" id="polaroid-card">
               <div class="washi-tape washi-top-left"></div>
               <div class="washi-tape washi-top-right"></div>
-              
-              <div class="polaroid-photo-frame">
-                <img id="polaroid-img" src="" alt="Polaroid Snapshot" class="polaroid-img">
-                <div class="polaroid-tag-chip" id="polaroid-tag">WORKSPACE</div>
-              </div>
 
-              <div class="polaroid-caption-box">
-                <p class="polaroid-caption" id="polaroid-caption">late night desk setup • 3:42 AM</p>
-                <div class="polaroid-controls">
-                  <span class="polaroid-counter" id="polaroid-counter">1 / 5</span>
-                  <span class="polaroid-hint">click to flip ↻</span>
+              <!-- Visual stacked layers beneath the top card -->
+              <div class="polaroid-under-layer polaroid-under-back" aria-hidden="true"></div>
+              <div class="polaroid-under-layer polaroid-under-mid" aria-hidden="true"></div>
+              
+              <!-- Interactive Top Card (Draggable / Tossable) -->
+              <div class="polaroid-interactive-card" id="polaroid-drag-card">
+                <div class="polaroid-photo-frame">
+                  <img id="polaroid-img" src="" alt="Polaroid Snapshot" class="polaroid-img" draggable="false">
+                  <div class="polaroid-film-overlay"></div>
+                  <div class="polaroid-tag-chip" id="polaroid-tag">WORKSPACE</div>
+                  <div class="polaroid-date-stamp" id="polaroid-date">'26 10 25</div>
+                  <button class="polaroid-zoom-trigger" id="polaroid-zoom-btn" title="Inspect Fullscreen (Lightbox)" aria-label="Open Lightbox">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" y1="3" x2="14" y2="10"></line>
+                      <line x1="3" y1="21" x2="10" y2="14"></line>
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="polaroid-caption-box">
+                  <p class="polaroid-caption" id="polaroid-caption">late night desk setup • 3:42 AM</p>
+                  <div class="polaroid-controls">
+                    <span class="polaroid-counter" id="polaroid-counter">1 / 5</span>
+                    <span class="polaroid-hint" id="polaroid-hint-text">drag or click to toss ↻</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -594,6 +611,39 @@
         <div class="guestbook-messages-list" id="guestbook-messages-list">
           <!-- Populated dynamically via GET /api/messages -->
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Full-Screen Aesthetic Polaroid Lightbox Modal ── -->
+  <div class="polaroid-lightbox-backdrop" id="polaroid-lightbox" aria-hidden="true">
+    <div class="polaroid-lightbox-card">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+      
+      <div class="lightbox-polaroid-body">
+        <div class="lightbox-photo-wrap">
+          <img id="lightbox-img" src="" alt="Snapshot Full View" class="lightbox-img" draggable="false">
+          <div class="lightbox-film-overlay"></div>
+          <div class="lightbox-date-stamp" id="lightbox-date">'26 10 25</div>
+        </div>
+
+        <div class="lightbox-caption-row">
+          <div class="lightbox-caption-info">
+            <span class="lightbox-tag-chip" id="lightbox-tag">WORKSPACE</span>
+            <p class="lightbox-caption" id="lightbox-caption">late night coding session • 3:42 AM</p>
+          </div>
+          <span class="lightbox-exif-pill" id="lightbox-exif">35mm • ISO 400 • f/1.8</span>
+        </div>
+      </div>
+
+      <div class="lightbox-nav-controls">
+        <button class="lightbox-nav-arrow" id="lightbox-prev-btn" title="Previous photo (←)" aria-label="Previous photo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <span class="lightbox-counter-badge" id="lightbox-counter">1 / 5</span>
+        <button class="lightbox-nav-arrow" id="lightbox-next-btn" title="Next photo (→)" aria-label="Next photo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </div>
     </div>
   </div>

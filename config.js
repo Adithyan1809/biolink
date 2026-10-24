@@ -268,32 +268,42 @@ const CONFIG = {
 
     moodPill: "🌙 midnight flow state • coding & 808s",
     
-    // Interactive Polaroid Gallery (Click to cycle through photos!)
+    // Interactive Polaroid Gallery (Draggable Photo Deck with Lightbox)
     polaroids: [
       {
-        url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
+        url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&auto=format&fit=crop&q=85",
         caption: "late night coding session • 3:42 AM",
-        tag: "WORKSPACE"
+        tag: "WORKSPACE",
+        date: "'26 10 24",
+        exif: "35mm • ISO 400 • f/1.8"
       },
       {
-        url: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=600&auto=format&fit=crop&q=80",
+        url: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1000&auto=format&fit=crop&q=85",
         caption: "shibuya neon reflections in rain",
-        tag: "STREET PHOTOGRAPHY"
+        tag: "STREET PHOTOGRAPHY",
+        date: "'26 09 18",
+        exif: "28mm • ISO 800 • f/2.0"
       },
       {
-        url: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=600&auto=format&fit=crop&q=80",
+        url: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?w=1000&auto=format&fit=crop&q=85",
         caption: "iced oat matcha latte obsession",
-        tag: "DAILY FUEL"
+        tag: "DAILY FUEL",
+        date: "'26 10 12",
+        exif: "50mm • ISO 200 • f/2.8"
       },
       {
-        url: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop&q=80",
+        url: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=1000&auto=format&fit=crop&q=85",
         caption: "custom lubed 60HE build with tape mod",
-        tag: "KEYBOARDS"
+        tag: "KEYBOARDS",
+        date: "'26 08 30",
+        exif: "35mm • ISO 250 • f/1.8"
       },
       {
-        url: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&auto=format&fit=crop&q=80",
+        url: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1000&auto=format&fit=crop&q=85",
         caption: "weekend track day apex hunt 🏎️",
-        tag: "MOTORSPORT"
+        tag: "MOTORSPORT",
+        date: "'26 10 05",
+        exif: "85mm • ISO 160 • f/2.2"
       }
     ],
 
