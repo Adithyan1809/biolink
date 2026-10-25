@@ -416,6 +416,10 @@
                       <span class="clock-meta-icon">🌐</span>
                       <span id="clock-visitor-offset">Your time: 00:22 (same time)</span>
                     </span>
+                    <span class="clock-meta-item clock-weather-item" id="clock-weather-item">
+                      <span class="clock-meta-icon" id="clock-weather-icon">⛅</span>
+                      <span id="clock-weather-text">25°C • Bengaluru</span>
+                    </span>
                   </div>
                   <a href="https://time.is/Bengaluru" target="_blank" rel="noopener noreferrer" class="clock-view-pill">
                     <span>View on time.is</span>
@@ -523,23 +527,78 @@
         </div>
       </section>
 
-      <!-- ── STEP 5: CURRENTLY IN MY LIFE (DEDICATED FULL-PAGE SHOWCASE) ── -->
+      <!-- ── STEP 5: CURRENTLY IN MY LIFE & DATING DOSSIER (DEDICATED FULL-PAGE SHOWCASE) ── -->
       <section class="l3-step-section" id="l3-step-5" data-step="4">
         <div class="step-inner-wrap step-matrix-wrap">
           
           <div class="matrix-page-header">
-            <div class="matrix-header-pill">
-              <span class="matrix-pill-sparkle">✦</span>
-              <span>DAILY FOCUS &amp; VIBES</span>
+            <!-- Modern Segmented Pill Switcher -->
+            <div class="life-tab-switcher" role="tablist">
+              <button class="life-tab-btn active" id="tab-btn-focus" role="tab" aria-selected="true" data-tab="focus">
+                <span class="life-tab-icon">✦</span>
+                <span>Daily Focus</span>
+              </button>
+              <button class="life-tab-btn" id="tab-btn-dating" role="tab" aria-selected="false" data-tab="dating">
+                <span class="life-tab-icon">❤️</span>
+                <span>Dating Dossier</span>
+              </button>
             </div>
-            <h2 class="matrix-page-heading">Currently In My Life</h2>
-            <p class="matrix-page-subtitle">a glimpse into what keeps me dialed in, motivated, and inspired</p>
+            <h2 class="matrix-page-heading" id="matrix-heading">Currently In My Life</h2>
+            <p class="matrix-page-subtitle" id="matrix-subtitle">a glimpse into what keeps me dialed in, motivated, and inspired</p>
           </div>
 
-          <!-- Spacious Matrix Bento Card -->
-          <div class="bento-card bento-matrix-showcase tilt-card">
+          <!-- Tab Pane 1: Daily Focus / Life Matrix -->
+          <div class="bento-card bento-matrix-showcase tilt-card" id="matrix-pane-focus">
             <div class="matrix-list-spacious" id="l3-matrix-list">
               <!-- Populated from config & JS -->
+            </div>
+          </div>
+
+          <!-- Tab Pane 2: Dating Dossier & Vibe Check -->
+          <div class="bento-card bento-dating-dossier tilt-card" id="matrix-pane-dating" style="display: none;">
+            <div class="dating-dossier-inner">
+              
+              <!-- 1. Three Core Vibe Cards -->
+              <div class="dating-vibes-grid" id="dating-vibes-grid">
+                <!-- Populated via JS from config -->
+              </div>
+
+              <!-- 2. Green Flags Grid -->
+              <div class="dating-flags-section">
+                <div class="dating-flags-header">
+                  <span class="dating-flags-pill">🟢 GREEN SIGNALS</span>
+                  <span class="dating-flags-title">things that instantly catch my attention</span>
+                </div>
+                <div class="dating-flags-list" id="dating-flags-list">
+                  <!-- Populated via JS from config -->
+                </div>
+              </div>
+
+              <!-- 3. Interactive First Date Selector (The Icebreaker) -->
+              <div class="dating-first-date-box">
+                <div class="first-date-header">
+                  <span class="first-date-spark">⚡ ICEBREAKER</span>
+                  <h4 class="first-date-heading">Pick Our First Date Idea:</h4>
+                </div>
+                <div class="first-date-options" id="first-date-options">
+                  <!-- Populated via JS from config -->
+                </div>
+                
+                <div class="first-date-action-row">
+                  <button class="first-date-send-btn" id="first-date-send-btn">
+                    <span class="send-btn-icon">💬</span>
+                    <span id="first-date-btn-text">Send Option to Adithyan on Instagram</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </button>
+                  <a href="https://instagram.com/adithyan_1895" target="_blank" rel="noopener noreferrer" class="dating-dm-direct" title="Slide into DMs">
+                    <span>or direct DM on IG (@adithyan_1895)</span>
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
 

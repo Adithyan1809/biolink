@@ -4953,3 +4953,381 @@ html, body {
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PERSONAL LIFE ENHANCEMENTS: DATING DOSSIER, LIFE TABS & WEATHER
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Life Tab Switcher (Daily Focus vs Dating Dossier) ── */
+.life-tab-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.life-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.life-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.life-tab-btn.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.life-tab-btn.active[data-tab="dating"] {
+  background: rgba(225, 6, 0, 0.16);
+  border-color: rgba(225, 6, 0, 0.35);
+  color: #ffffff;
+}
+
+.life-tab-icon {
+  font-size: 0.85rem;
+}
+
+/* ── Dating Dossier Bento Card ── */
+.bento-dating-dossier {
+  width: 100%;
+  padding: clamp(14px, 2vh, 22px);
+  background: rgba(12, 15, 24, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
+  animation: fadeInPane 0.35s ease forwards;
+}
+
+@keyframes fadeInPane {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dating-dossier-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.8vh, 18px);
+}
+
+/* Three Core Vibe Cards */
+.dating-vibes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.dating-vibe-card {
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.25s ease;
+}
+
+.dating-vibe-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.dating-vibe-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dating-vibe-icon {
+  font-size: 1.1rem;
+}
+
+.dating-vibe-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-color, #e10600);
+}
+
+.dating-vibe-desc {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Green Flags Section */
+.dating-flags-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dating-flags-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.dating-flags-pill {
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.14);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.dating-flags-title {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.dating-flags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dating-flag-chip {
+  padding: 5px 11px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.72rem;
+  color: #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.dating-flag-chip:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #ffffff;
+}
+
+.dating-flag-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+/* First Date Box & Selector */
+.dating-first-date-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.first-date-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.first-date-spark {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(234, 179, 8, 0.15);
+  color: #facc15;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.first-date-heading {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.first-date-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.first-date-card {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.first-date-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+}
+
+.first-date-card.selected {
+  background: rgba(225, 6, 0, 0.12);
+  border-color: rgba(225, 6, 0, 0.6);
+  box-shadow: 0 4px 18px rgba(225, 6, 0, 0.3);
+}
+
+.first-date-card.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--accent-color, #e10600);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-date-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.first-date-opt-icon {
+  font-size: 1rem;
+}
+
+.first-date-opt-title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.first-date-opt-sub {
+  font-size: 0.68rem;
+  line-height: 1.35;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.first-date-action-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.first-date-send-btn {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e10600 0%, #b80500 100%);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.80rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.4);
+}
+
+.first-date-send-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(225, 6, 0, 0.6);
+  filter: brightness(1.1);
+}
+
+.first-date-send-btn:active {
+  transform: translateY(0);
+}
+
+.dating-dm-direct {
+  font-size: 0.68rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.dating-dm-direct:hover {
+  color: #cbd5e1;
+  text-decoration: underline;
+}
+
+/* Clock Weather Indicator */
+.clock-weather-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile Responsive Adjustments for Dating Dossier */
+@media (max-width: 640px) {
+  .dating-vibes-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .first-date-options {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  
+  .life-tab-btn {
+    padding: 5px 12px;
+    font-size: 0.70rem;
+  }
+}

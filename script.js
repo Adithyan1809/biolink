@@ -1123,6 +1123,9 @@ function populateLayout3(cfg = {}) {
   // ── 8. Weather Widget (Matching User Image 1) ──
   populateWeather(l3Data.weather || cfg.weather);
 
+  // ── 8a. Life Tabs & Dating Dossier Showcase ──
+  initLifeTabsAndDating(l3Data.datingDossier || cfg.datingDossier);
+
   // ── 8b. About Me Live Widgets (Stats.fm, Discord, Timezone Clock) ──
   initAboutMeWidgets(cfg);
 
@@ -1346,6 +1349,9 @@ function initAboutMeWidgets(cfg = {}) {
     discCard.addEventListener("click", () => {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(targetUsername);
+        if (typeof showToast === "function") {
+          showToast(`Copied Discord username: ${targetUsername} 🎮`);
+        }
       }
     });
   }
@@ -1454,15 +1460,174 @@ function initAboutMeWidgets(cfg = {}) {
 }
 
 /* --------------------------------------------------------------------------
-   13. Weather Widget Populator (California City Sun Pill)
+   13. Live Bengaluru Weather Populator (Open-Meteo Real-Time Sync)
 -------------------------------------------------------------------------- */
 function populateWeather(wCfg = {}) {
   const cityEl = document.getElementById("weather-city");
   const tempEl = document.getElementById("weather-temp");
   const descEl = document.getElementById("weather-desc");
-  if (cityEl) cityEl.textContent = wCfg.city || "California City, United States";
-  if (tempEl) tempEl.textContent = wCfg.temp || "11°C";
-  if (descEl) descEl.textContent = wCfg.condition || "Sunny";
+  const clockWeatherItem = document.getElementById("clock-weather-item");
+  const clockWeatherText = document.getElementById("clock-weather-text");
+  const clockWeatherIcon = document.getElementById("clock-weather-icon");
+
+  // Initial fallback from config
+  if (cityEl) cityEl.textContent = wCfg.city || "Bengaluru, India";
+  if (tempEl) tempEl.textContent = wCfg.temp || "25°C";
+  if (descEl) descEl.textContent = wCfg.condition || "Pleasant Breeze";
+  if (clockWeatherText) clockWeatherText.textContent = `${wCfg.temp || '25°C'} • Bengaluru`;
+
+  const weatherCodeMap = {
+    0: { desc: "Clear Sky", dayIcon: "☀️", nightIcon: "🌙" },
+    1: { desc: "Mainly Clear", dayIcon: "🌤️", nightIcon: "🌤️" },
+    2: { desc: "Partly Cloudy", dayIcon: "⛅", nightIcon: "⛅" },
+    3: { desc: "Overcast", dayIcon: "☁️", nightIcon: "☁️" },
+    45: { desc: "Misty Breeze", dayIcon: "🌫️", nightIcon: "🌫️" },
+    48: { desc: "Foggy Air", dayIcon: "🌫️", nightIcon: "🌫️" },
+    51: { desc: "Light Drizzle", dayIcon: "🌦️", nightIcon: "🌧️" },
+    53: { desc: "Moderate Drizzle", dayIcon: "🌧️", nightIcon: "🌧️" },
+    55: { desc: "Dense Drizzle", dayIcon: "🌧️", nightIcon: "🌧️" },
+    61: { desc: "Light Rain", dayIcon: "🌧️", nightIcon: "🌧️" },
+    63: { desc: "Steady Rain", dayIcon: "🌧️", nightIcon: "🌧️" },
+    65: { desc: "Heavy Rain", dayIcon: "🌧️", nightIcon: "🌧️" },
+    80: { desc: "Rain Showers", dayIcon: "🌦️", nightIcon: "🌧️" },
+    95: { desc: "Thunderstorm Beats", dayIcon: "⛈️", nightIcon: "⛈️" }
+  };
+
+  function fetchBengaluruWeather() {
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=12.9716&longitude=77.5946&current=temperature_2m,relative_humidity_2m,weather_code,is_day,wind_speed_10m")
+      .then((res) => (res.ok ? res.json() : Promise.reject()))
+      .then((data) => {
+        if (!data || !data.current) return;
+        const cur = data.current;
+        const temp = Math.round(cur.temperature_2m);
+        const code = cur.weather_code;
+        const isDay = cur.is_day === 1;
+        const mapping = weatherCodeMap[code] || { desc: "Pleasant Breeze", dayIcon: "☀️", nightIcon: "🌙" };
+        const icon = isDay ? mapping.dayIcon : mapping.nightIcon;
+
+        if (cityEl) cityEl.textContent = "Bengaluru, India";
+        if (tempEl) tempEl.textContent = `${temp}°C`;
+        if (descEl) descEl.textContent = `${icon} ${mapping.desc}`;
+        if (clockWeatherText) clockWeatherText.textContent = `${temp}°C • ${mapping.desc}`;
+        if (clockWeatherIcon) clockWeatherIcon.textContent = icon;
+      })
+      .catch(() => {});
+  }
+
+  fetchBengaluruWeather();
+  setInterval(fetchBengaluruWeather, 10 * 60 * 1000); // Live poll every 10 mins
+}
+
+/* --------------------------------------------------------------------------
+   13b. Life Tabs & Dating Dossier Showcase
+-------------------------------------------------------------------------- */
+function initLifeTabsAndDating(dossierCfg = {}) {
+  const tabFocus = document.getElementById("tab-btn-focus");
+  const tabDating = document.getElementById("tab-btn-dating");
+  const paneFocus = document.getElementById("matrix-pane-focus");
+  const paneDating = document.getElementById("matrix-pane-dating");
+  const heading = document.getElementById("matrix-heading");
+  const subtitle = document.getElementById("matrix-subtitle");
+
+  if (!tabFocus || !tabDating || !paneFocus || !paneDating) return;
+
+  function switchTab(target) {
+    if (target === "dating") {
+      tabDating.classList.add("active");
+      tabDating.setAttribute("aria-selected", "true");
+      tabFocus.classList.remove("active");
+      tabFocus.setAttribute("aria-selected", "false");
+      paneFocus.style.display = "none";
+      paneDating.style.display = "block";
+      if (heading) heading.textContent = "Dating Dossier & Vibe Check";
+      if (subtitle) subtitle.textContent = dossierCfg.tagline || "skip the awkward small talk • let's see if our vibes align";
+    } else {
+      tabFocus.classList.add("active");
+      tabFocus.setAttribute("aria-selected", "true");
+      tabDating.classList.remove("active");
+      tabDating.setAttribute("aria-selected", "false");
+      paneDating.style.display = "none";
+      paneFocus.style.display = "block";
+      if (heading) heading.textContent = "Currently In My Life";
+      if (subtitle) subtitle.textContent = "a glimpse into what keeps me dialed in, motivated, and inspired";
+    }
+  }
+
+  tabFocus.addEventListener("click", () => switchTab("focus"));
+  tabDating.addEventListener("click", () => switchTab("dating"));
+
+  // 1. Populate Core Vibe Cards
+  const vibesGrid = document.getElementById("dating-vibes-grid");
+  if (vibesGrid && dossierCfg.bioCards) {
+    vibesGrid.innerHTML = dossierCfg.bioCards.map((b) => `
+      <div class="dating-vibe-card">
+        <div class="dating-vibe-top">
+          <span class="dating-vibe-icon">${b.icon}</span>
+          <span class="dating-vibe-title">${b.title}</span>
+        </div>
+        <p class="dating-vibe-desc">${b.desc}</p>
+      </div>
+    `).join("");
+  }
+
+  // 2. Populate Green Flags List
+  const flagsList = document.getElementById("dating-flags-list");
+  if (flagsList && dossierCfg.greenFlags) {
+    flagsList.innerHTML = dossierCfg.greenFlags.map((f) => `
+      <span class="dating-flag-chip">
+        <span class="dating-flag-dot"></span>
+        <span>${f}</span>
+      </span>
+    `).join("");
+  }
+
+  // 3. Populate & Connect First Date Options (The Icebreaker)
+  const optionsContainer = document.getElementById("first-date-options");
+  const sendBtn = document.getElementById("first-date-send-btn");
+  const btnText = document.getElementById("first-date-btn-text");
+
+  let selectedOption = dossierCfg.firstDateOptions?.[0] || null;
+
+  if (optionsContainer && dossierCfg.firstDateOptions) {
+    optionsContainer.innerHTML = dossierCfg.firstDateOptions.map((opt, idx) => `
+      <div class="first-date-card${idx === 0 ? " selected" : ""}" data-idx="${idx}">
+        <div class="first-date-top">
+          <span class="first-date-opt-icon">${opt.icon}</span>
+          <span class="first-date-opt-title">${opt.title}</span>
+        </div>
+        <p class="first-date-opt-sub">${opt.subtitle}</p>
+      </div>
+    `).join("");
+
+    const cards = optionsContainer.querySelectorAll(".first-date-card");
+    cards.forEach((card, idx) => {
+      card.addEventListener("click", () => {
+        cards.forEach((c) => c.classList.remove("selected"));
+        card.classList.add("selected");
+        selectedOption = dossierCfg.firstDateOptions[idx];
+        if (btnText && selectedOption) {
+          btnText.textContent = `Send "${selectedOption.title}" Invite on Instagram`;
+        }
+      });
+    });
+  }
+
+  if (sendBtn) {
+    sendBtn.addEventListener("click", () => {
+      if (!selectedOption) return;
+      const icebreaker = selectedOption.icebreaker || `Hey Adithyan! Saw your website vibe check — I pick: ${selectedOption.title} 🏎️☕`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(icebreaker).catch(() => {});
+      }
+      if (typeof showToast === "function") {
+        showToast("Icebreaker copied! Opening Adithyan's Instagram DMs... 💬");
+      }
+      setTimeout(() => {
+        const url = dossierCfg.instagramDmUrl || "https://ig.me/m/adithyan_1895";
+        window.open(url, "_blank", "noopener,noreferrer");
+      }, 650);
+    });
+  }
 }
 
 /* --------------------------------------------------------------------------

@@ -316,6 +316,62 @@ const CONFIG = {
       { category: "READING", icon: "📖", value: "Cyberpunk: Edgerunners & Initial D" }
     ],
 
+    // ── Dating Dossier & Vibe Check ──
+    datingDossier: {
+      enabled: true,
+      badge: "VIBE CHECK & DATING DOSSIER",
+      tagline: "skip the awkward small talk • let's see if our vibes align",
+      bioCards: [
+        {
+          icon: "🏎️",
+          title: "Weekend Energy",
+          desc: "Late night drives with heavy 808 beats, F1 telemetry debates, or finding niche rooftop cafes."
+        },
+        {
+          icon: "☕",
+          title: "The Coffee Clause",
+          desc: "Will gladly cross town for specialty iced pour-overs or dark roast espresso. Severe coffee snob."
+        },
+        {
+          icon: "🎧",
+          title: "Aux Cord Guarantee",
+          desc: "Zero skip anxiety. Curated blend of drift phonk, R&B, indie, and midnight synth."
+        }
+      ],
+      greenFlags: [
+        "Has a personal obsession or creative project you can talk about for hours",
+        "Sends Spotify tracks with 'you have to drop everything and hear this'",
+        "Down for spontaneous 11 PM dessert, chai, or highway runs",
+        "Competitive banter & high-speed go-kart lap battles",
+        "Doesn't take life or themselves too seriously"
+      ],
+      firstDateOptions: [
+        {
+          id: "cafe",
+          icon: "☕",
+          title: "Specialty Cafe Crawl",
+          subtitle: "Third-wave iced brews & banter in Indiranagar",
+          icebreaker: "Hey Adithyan! Saw your website vibe check — I'm picking Option A: Specialty Cafe Crawl ☕✨"
+        },
+        {
+          id: "gokart",
+          icon: "🏎️",
+          title: "Go-Kart Lap Battle",
+          subtitle: "High-speed apex duel. Loser buys waffles and coffee",
+          icebreaker: "Hey Adithyan! Saw your website vibe check — I'm challenging you to Option B: Go-Kart Lap Battle 🏎️🧇"
+        },
+        {
+          id: "nightdrive",
+          icon: "🌙",
+          title: "Midnight Phonk Drive",
+          subtitle: "Windows down, city lights, cold breeze & street food stop",
+          icebreaker: "Hey Adithyan! Saw your website vibe check — let's do Option C: Midnight Phonk Drive 🌙🏎️"
+        }
+      ],
+      instagramHandle: "adithyan_1895",
+      instagramDmUrl: "https://ig.me/m/adithyan_1895"
+    },
+
 
 
     // GitHub Live Stats (Synced with Adithyan1809)
