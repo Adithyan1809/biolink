@@ -40,7 +40,7 @@ const CONFIG = {
   videoBackground: {
     enabled: true,                        // Video enabled in the background
     videoUrl: "assets/f1_video.mp4",      // 1080p Full HD Red Bull F1 Racing Video (H.264 FastStart)
-    fallbackUrl: "assets/f1_video.mp4",
+    fallbackUrl: "https://raw.githubusercontent.com/Wauro21/elo328/master/Dataset/redbull.mp4",
     posterImage: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1920&auto=format&fit=crop&q=80",
     
     // ── Video Controls ──

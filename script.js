@@ -121,6 +121,15 @@ function initVideoBackground(vCfg = {}) {
   video.addEventListener("canplay", safePlay, { once: true });
   video.addEventListener("play", applySpeed);
 
+  // Fallback if local source has any issue
+  video.addEventListener("error", () => {
+    if (vCfg.fallbackUrl && video.src !== vCfg.fallbackUrl) {
+      video.src = vCfg.fallbackUrl;
+      video.load();
+      safePlay();
+    }
+  });
+
   // Seamless continuous loop enforcement: if browser loop stalls or reaches end, rewind and replay instantly
   video.addEventListener("ended", () => {
     video.currentTime = 0;
