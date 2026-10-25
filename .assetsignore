@@ -1,0 +1,16 @@
+.git
+.git/**
+**/.git/**
+node_modules
+node_modules/**
+**/node_modules/**
+.wrangler
+.wrangler/**
+**/.wrangler/**
+test
+test/**
+*.log
+.env
+.env.*
+.system_generated
+.system_generated/**

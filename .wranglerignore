@@ -1,0 +1,7 @@
+.git/
+node_modules/
+.wrangler/
+test/
+*.log
+.env
+.env.*
