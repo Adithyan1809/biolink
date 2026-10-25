@@ -20,7 +20,7 @@ const CONFIG = {
       "developer & drift enthusiast 🏎️",
       "building cool stuff online ⚡",
       "shipping code from bengaluru",
-      "crafting digital experiences • adithyanp.me",
+      "crafting digital experiences • who.isadi.workers.dev",
       "late night commits & 808 beats 🔊",
       "obsessed with clean code & aesthetics"
     ],
@@ -188,7 +188,7 @@ const CONFIG = {
         "developer & drift enthusiast 🏎️",
         "building cool stuff online ⚡",
         "shipping code from bengaluru",
-        "crafting digital experiences • adithyanp.me",
+        "crafting digital experiences • who.isadi.workers.dev",
         "late night commits & 808 beats 🔊",
         "obsessed with clean code & aesthetics"
       ],
@@ -198,7 +198,7 @@ const CONFIG = {
         { platform: "x", url: "https://x.com/Adithyan1895", label: "X" },
         { platform: "discord", url: "https://discord.com/users/adithyan1809", label: "Discord" },
         { platform: "spotify", url: "https://open.spotify.com/user/31zymccmdqzrzvjkdryasaqmkwlq", label: "Spotify" },
-        { platform: "web", url: "https://adithyanp.me", label: "Website" },
+        { platform: "web", url: "https://who.isadi.workers.dev/", label: "Website" },
         { platform: "email", url: "mailto:adithyan18092005@gmail.com", label: "Email" }
       ]
     },

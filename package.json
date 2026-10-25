@@ -11,7 +11,7 @@
     "test:cloudflare": "node test/cloudflare_test.js",
     "test:all": "npm test && npm run test:cloudflare",
     "pages:dev": "wrangler pages dev .",
-    "deploy:cloudflare": "wrangler pages deploy . --project-name=adithyan-biolink"
+    "deploy:cloudflare": "wrangler pages deploy . --project-name=who"
   },
   "keywords": [
     "portfolio",
