@@ -325,54 +325,54 @@ const CONFIG = {
       bioCards: [
         {
           num: "01",
-          label: "01:42 AM PROTOCOL",
-          icon: "🏎️",
-          title: "Night Drive Therapy",
-          desc: "Late night highway runs with heavy 808 beats, F1 telemetry debates, or finding niche rooftop spots."
+          label: "AFTER HOURS",
+          icon: "🌙",
+          title: "Late Night Drives",
+          desc: "Windows down on the quiet highway, late-night R&B queued on the aux, hunting for 2 AM waffles or just driving with no destination."
         },
         {
           num: "02",
-          label: "DAILY FUEL",
+          label: "DAILY RITUAL",
           icon: "☕",
           title: "The Coffee Standard",
-          desc: "Will gladly cross town for specialty iced pour-overs or dark roast espresso. Severe coffee snob."
+          desc: "My toxic trait is crossing the entire city just for a good iced pour-over or matcha latte. I will gladly rate cafe aesthetics with you."
         },
         {
           num: "03",
-          label: "CURATED SOUND",
+          label: "AUX PRIVILEGES",
           icon: "🎧",
           title: "The Aux Cord Rule",
-          desc: "Zero skip anxiety. Curated blend of drift phonk, R&B, late-night indie, and midnight synth."
+          desc: "Zero skip anxiety. From Frank Ocean, SZA, and Brent Faiyaz to late-night indie & synth — you always have aux veto power."
         }
       ],
       wavelength: [
-        "Has a personal obsession or creative project you can talk about for hours",
-        "Sends Spotify tracks with 'you have to drop everything and hear this'",
-        "Down for spontaneous 11 PM dessert, chai, or highway runs",
-        "Competitive banter & high-speed go-kart lap battles",
-        "Doesn't take life or themselves too seriously"
+        "Can talk for hours about things you're genuinely passionate about",
+        "Sends Spotify songs with 'you have to drop everything and listen to this'",
+        "Down for spontaneous 11 PM gelato or midnight chai runs",
+        "Loves aesthetic cafes, film photos & playful banter",
+        "Never takes life too seriously"
       ],
       moveOptions: [
         {
           id: "cafe",
           icon: "☕",
-          title: "Specialty Cafe Crawl",
-          subtitle: "Third-wave iced brews & banter in Indiranagar",
-          icebreaker: "Hey Adithyan! Saw your site — I'm picking the move: Specialty Cafe Crawl ☕✨"
-        },
-        {
-          id: "gokart",
-          icon: "🏎️",
-          title: "Go-Kart Lap Battle",
-          subtitle: "High-speed apex duel. Loser buys waffles and coffee",
-          icebreaker: "Hey Adithyan! Saw your site — I'm challenging you to: Go-Kart Lap Battle 🏎️🧇"
+          title: "Iced Coffee & Pastry Run",
+          subtitle: "Third-wave iced brews & almond croissants in Indiranagar",
+          icebreaker: "Hey Adithyan! Picking our move: Iced Coffee & Pastry Run ☕🥐"
         },
         {
           id: "nightdrive",
           icon: "🌙",
-          title: "Midnight City Drive",
-          subtitle: "Windows down, cold breeze, 808 beats & street food stop",
-          icebreaker: "Hey Adithyan! Saw your site — let's do the Midnight City Drive 🌙🏎️"
+          title: "11 PM Gelato & Highway Drive",
+          subtitle: "Windows down, cold breeze, late-night R&B & dessert stop",
+          icebreaker: "Hey Adithyan! Let's do the 11 PM Gelato & Highway Drive 🌙🍨"
+        },
+        {
+          id: "gokart",
+          icon: "🏎️",
+          title: "Go-Kart Battle (Loser Buys Dessert)",
+          subtitle: "Friendly apex banter on track. I promise I won't take it too seriously",
+          icebreaker: "Hey Adithyan! Challenging you to: Go-Kart Battle (loser buys dessert!) 🏎️🧇"
         }
       ],
       instagramHandle: "adithyan_1895",

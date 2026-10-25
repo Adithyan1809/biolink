@@ -1578,7 +1578,7 @@ function initOffTheRecordPage(offCfg = {}) {
         card.classList.add("selected");
         selectedOption = moveOptions[idx];
         if (pitchText && selectedOption) {
-          pitchText.textContent = `Pitch "${selectedOption.title}" to Adithyan`;
+          pitchText.textContent = `Plan "${selectedOption.title}" with Adithyan ✨`;
         }
       });
     });
@@ -1587,7 +1587,7 @@ function initOffTheRecordPage(offCfg = {}) {
   if (pitchBtn) {
     pitchBtn.addEventListener("click", () => {
       if (!selectedOption) return;
-      const icebreaker = selectedOption.icebreaker || `Hey Adithyan! Saw your site — I'm picking: ${selectedOption.title} 🏎️☕`;
+      const icebreaker = selectedOption.icebreaker || `Hey Adithyan! Saw your site — let's do: ${selectedOption.title} ✨`;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(icebreaker).catch(() => {});
       }
