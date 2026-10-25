@@ -692,6 +692,9 @@ function populateLayout3(cfg = {}) {
   const polaroidDate = document.getElementById("polaroid-date");
   const tossBtn = document.getElementById("polaroid-hint-text");
   const zoomBtn = document.getElementById("polaroid-zoom-btn");
+  const polaroidPrevBtn = document.getElementById("polaroid-prev-btn");
+  const polaroidNextBtn = document.getElementById("polaroid-next-btn");
+  const polaroidDots = document.getElementById("polaroid-dots");
 
   const polaroids = l3Data.polaroids || [
     {
@@ -758,6 +761,24 @@ function populateLayout3(cfg = {}) {
   let currentY = 0;
   let isAnimating = false;
 
+  function renderPolaroidDots() {
+    if (!polaroidDots) return;
+    polaroidDots.innerHTML = polaroids.map((_, i) => `
+      <span class="polaroid-dot${i === currentIndex ? ' active' : ''}" data-idx="${i}" title="View photo ${i + 1}"></span>
+    `).join("");
+
+    polaroidDots.querySelectorAll(".polaroid-dot").forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const targetIdx = parseInt(dot.dataset.idx, 10);
+        if (targetIdx !== currentIndex) {
+          playCameraShutterSound();
+          currentIndex = targetIdx;
+          renderPolaroid(currentIndex);
+        }
+      });
+    });
+  }
+
   function renderPolaroid(idx) {
     const p = polaroids[idx];
     if (!p) return;
@@ -766,6 +787,7 @@ function populateLayout3(cfg = {}) {
     if (polaroidCaption) polaroidCaption.textContent = p.caption || "";
     if (polaroidCounter) polaroidCounter.textContent = `${idx + 1} / ${polaroids.length}`;
     if (polaroidDate) polaroidDate.textContent = p.date || "'26 10 25";
+    renderPolaroidDots();
   }
 
   function tossCard(direction = 1) {
@@ -777,7 +799,9 @@ function populateLayout3(cfg = {}) {
     dragCard.classList.add(direction > 0 ? "tossed-right" : "tossed-left");
 
     setTimeout(() => {
-      currentIndex = (currentIndex + 1) % polaroids.length;
+      currentIndex = (direction > 0)
+        ? (currentIndex + 1) % polaroids.length
+        : (currentIndex - 1 + polaroids.length) % polaroids.length;
       renderPolaroid(currentIndex);
       dragCard.style.transform = "";
       dragCard.classList.remove("tossed-left", "tossed-right");
@@ -851,6 +875,20 @@ function populateLayout3(cfg = {}) {
 
     if (tossBtn) {
       tossBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        tossCard(1);
+      });
+    }
+
+    if (polaroidPrevBtn) {
+      polaroidPrevBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        tossCard(-1);
+      });
+    }
+
+    if (polaroidNextBtn) {
+      polaroidNextBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         tossCard(1);
       });
@@ -958,7 +996,7 @@ function populateLayout3(cfg = {}) {
 
   renderPolaroid(0);
 
-  // ── 3. Interactive Vinyl Turntable Sound Deck (Phonk Player) ──
+  // ── 3. Interactive Hero Mini Player (Phonk Player) ──
   const bgAudio = document.getElementById("bg-audio");
   const l3PlayBtn = document.getElementById("l3-play-btn");
   const l3TrackTitle = document.getElementById("l3-track-title");
@@ -967,6 +1005,8 @@ function populateLayout3(cfg = {}) {
   const vinylDisc = document.getElementById("vinyl-disc");
   const vinylEq = document.getElementById("vinyl-eq-bars");
   const l3VolSlider = document.getElementById("l3-vol-slider");
+  const l3VolToggle = document.getElementById("l3-vol-toggle");
+  const l3VolIcon = document.getElementById("l3-vol-icon");
 
   if (l3TrackTitle) l3TrackTitle.textContent = music.title || music.trackName || "EXECUTIONER";
   if (l3Artist) l3Artist.textContent = music.artist || "Phonk Drift";
@@ -983,8 +1023,8 @@ function populateLayout3(cfg = {}) {
     }
     if (l3PlayBtn) {
       l3PlayBtn.innerHTML = isPlaying
-        ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`
-        : `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
+        ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`
+        : `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`;
     }
   }
 
@@ -997,6 +1037,29 @@ function populateLayout3(cfg = {}) {
       bgAudio.addEventListener("volumechange", () => {
         l3VolSlider.value = bgAudio.volume;
       });
+    }
+
+    let lastNonZeroVol = 0.4;
+    if (l3VolToggle) {
+      l3VolToggle.addEventListener("click", () => {
+        if (bgAudio.volume > 0) {
+          lastNonZeroVol = bgAudio.volume;
+          bgAudio.volume = 0;
+        } else {
+          bgAudio.volume = lastNonZeroVol || 0.4;
+        }
+      });
+
+      const updateVolIcon = () => {
+        if (!l3VolIcon) return;
+        if (bgAudio.volume === 0) {
+          l3VolIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>`;
+        } else {
+          l3VolIcon.innerHTML = `<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>`;
+        }
+      };
+      bgAudio.addEventListener("volumechange", updateVolIcon);
+      updateVolIcon();
     }
 
     if (l3PlayBtn) {
@@ -1018,13 +1081,13 @@ function populateLayout3(cfg = {}) {
   // ── 4. Life & Taste Matrix (Currently In My Life) ──
   const l3MatrixList = document.getElementById("l3-matrix-list");
   if (l3MatrixList && l3Data.matrix) {
-    l3MatrixList.innerHTML = l3Data.matrix.map((item) => `
-      <div class="matrix-row">
-        <span class="matrix-cat">
-          <span class="matrix-emoji">${item.icon}</span>
-          ${item.category}
-        </span>
-        <span class="matrix-val">${item.value}</span>
+    l3MatrixList.innerHTML = l3Data.matrix.map((item, idx) => `
+      <div class="matrix-item-spacious${idx === l3Data.matrix.length - 1 ? ' span-full' : ''}">
+        <div class="matrix-icon-box">${item.icon}</div>
+        <div class="matrix-content-col">
+          <span class="matrix-cat-label">${item.category}</span>
+          <span class="matrix-val-text">${item.value}</span>
+        </div>
       </div>
     `).join("");
   }

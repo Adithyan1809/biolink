@@ -494,7 +494,7 @@ const CONFIG = {
       ]
     },
 
-    // ── Step Scrolling System (5 Steps with Discrete Window Jumps & Dot HUD) ──
+    // ── Step Scrolling System (6 Discrete Steps) ──
     stepScrolling: {
       enabled: true,
       throttleMs: 650,
@@ -502,8 +502,9 @@ const CONFIG = {
         { id: "l3-step-1", name: "Profile" },
         { id: "l3-step-2", name: "About Me" },
         { id: "l3-step-3", name: "Favourite Tracks" },
-        { id: "l3-step-4", name: "Sound Deck & Rig" },
-        { id: "l3-step-5", name: "GitHub & Footer" }
+        { id: "l3-step-4", name: "Visual Journal" },
+        { id: "l3-step-5", name: "Currently In My Life" },
+        { id: "l3-step-6", name: "GitHub & Footer" }
       ]
     }
   }

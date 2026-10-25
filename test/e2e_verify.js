@@ -1,5 +1,7 @@
 // End-to-end test and validation for Adithyan's Full-Stack Biolink website
 const http = require('http');
+const path = require('path');
+const { spawn } = require('child_process');
 
 function request(options, data = null) {
   return new Promise((resolve, reject) => {
@@ -24,17 +26,36 @@ async function runE2ETests() {
   console.log('🧪 Starting Full-Stack Production Verification Suite...\n');
   let passed = 0;
   let total = 0;
+  let serverProcess = null;
 
-  async function test(name, fn) {
-    total++;
+  try {
+    // Check if server is already running, else start it
     try {
-      await fn();
-      console.log(`  ✅ [PASS] ${name}`);
-      passed++;
-    } catch (err) {
-      console.error(`  ❌ [FAIL] ${name}:`, err.message);
+      await request({ host: 'localhost', port: 3000, path: '/api/health', method: 'GET' });
+    } catch (_) {
+      serverProcess = spawn(process.execPath, ['server.js'], {
+        cwd: path.join(__dirname, '..'),
+        stdio: 'ignore'
+      });
+      for (let i = 0; i < 25; i++) {
+        await new Promise(r => setTimeout(r, 200));
+        try {
+          const h = await request({ host: 'localhost', port: 3000, path: '/api/health', method: 'GET' });
+          if (h.status === 200) break;
+        } catch (_) {}
+      }
     }
-  }
+
+    async function test(name, fn) {
+      total++;
+      try {
+        await fn();
+        console.log(`  ✅ [PASS] ${name}`);
+        passed++;
+      } catch (err) {
+        console.error(`  ❌ [FAIL] ${name}:`, err.message);
+      }
+    }
 
   // 1. Static HTML serving & SEO tags
   await test('GET / returns 200 and production SEO / PWA meta tags', async () => {
@@ -141,9 +162,18 @@ async function runE2ETests() {
   console.log(`Verification Complete: ${passed} / ${total} tests passed.`);
   console.log(`==============================================\n`);
 
+  if (serverProcess) {
+    serverProcess.kill();
+  }
+
   if (passed !== total) {
     process.exit(1);
   }
+} finally {
+  if (serverProcess) {
+    try { serverProcess.kill(); } catch (_) {}
+  }
+}
 }
 
 runE2ETests().catch((err) => {

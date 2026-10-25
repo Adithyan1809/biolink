@@ -145,6 +145,57 @@
         </div>
 
         <div class="step-inner-wrap step-hero-wrap">
+
+          <!-- Compact Floating Hero Music Player (Haunt.gg aesthetic micro-player) -->
+          <div class="hero-mini-player tilt-card" id="hero-mini-player">
+            <div class="mini-player-left">
+              <div class="vinyl-record-disc mini-disc" id="vinyl-disc">
+                <div class="vinyl-grooves"></div>
+                <div class="vinyl-center-label">
+                  <img id="l3-vinyl-art" src="" alt="Cover" class="vinyl-art-img">
+                </div>
+              </div>
+              <div class="mini-player-meta">
+                <div class="mini-player-tag">
+                  <span class="spinning-dot"></span>
+                  <span class="mini-tag-text">NOW SPINNING</span>
+                </div>
+                <div class="mini-player-track-info">
+                  <span class="mini-track-title" id="l3-track-title">EXECUTIONER</span>
+                  <span class="mini-artist-sep">•</span>
+                  <span class="mini-track-artist" id="l3-artist">Phonk Drift</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated Equalizer Frequency Bars -->
+            <div class="vinyl-eq-bars mini-eq-bars" id="vinyl-eq-bars">
+              <span class="eq-bar bar-1"></span>
+              <span class="eq-bar bar-2"></span>
+              <span class="eq-bar bar-3"></span>
+              <span class="eq-bar bar-4"></span>
+              <span class="eq-bar bar-5"></span>
+            </div>
+
+            <!-- Play/Pause Button -->
+            <button class="mini-play-btn" id="l3-play-btn" title="Toggle Audio Playback" aria-label="Play or Pause">
+              <svg id="l3-play-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+
+            <!-- Volume Control -->
+            <div class="mini-volume-wrap">
+              <button class="mini-vol-toggle-btn" id="l3-vol-toggle" title="Toggle Mute" aria-label="Toggle Mute">
+                <svg id="l3-vol-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+              </button>
+              <input type="range" class="vinyl-volume-slider mini-vol-slider" id="l3-vol-slider" min="0" max="1" step="0.05" value="0.4" aria-label="Volume Slider">
+            </div>
+          </div>
+
           <div class="haunt-simple-hero">
             
             <!-- 1. Centered Circular Avatar with Dark Rim (Exact from Reference Image) -->
@@ -398,66 +449,22 @@
         </div>
       </section>
 
-      <!-- ── STEP 4: SOUND DECK, RIG & LIFE MATRIX ── -->
+      <!-- ── STEP 4: VISUAL JOURNAL & POLAROID DECK (DEDICATED FULL-PAGE SHOWCASE) ── -->
       <section class="l3-step-section" id="l3-step-4" data-step="3">
-        <div class="step-inner-wrap step-rig-wrap">
-          <div class="bento-step-3-grid">
-
-            <!-- Bento: Interactive Vinyl Sound Deck (Span 6) -->
-            <div class="bento-card bento-vinyl tilt-card">
-              <div class="vinyl-header">
-                <div class="vinyl-tag">
-                  <span class="spinning-dot"></span>
-                  <span>NOW SPINNING</span>
-                </div>
-                <span class="vinyl-bpm-chip">134 BPM</span>
-              </div>
-
-              <div class="vinyl-turntable-body">
-                <div class="vinyl-record-disc" id="vinyl-disc">
-                  <div class="vinyl-grooves"></div>
-                  <div class="vinyl-center-label">
-                    <img id="l3-vinyl-art" src="" alt="Cover" class="vinyl-art-img">
-                  </div>
-                </div>
-                
-                <div class="vinyl-track-info">
-                  <span class="vinyl-track-title" id="l3-track-title">EXECUTIONER</span>
-                  <span class="vinyl-artist" id="l3-artist">Phonk Drift</span>
-                  
-                  <!-- Animated Equalizer Frequency Bars -->
-                  <div class="vinyl-eq-bars" id="vinyl-eq-bars">
-                    <span class="eq-bar bar-1"></span>
-                    <span class="eq-bar bar-2"></span>
-                    <span class="eq-bar bar-3"></span>
-                    <span class="eq-bar bar-4"></span>
-                    <span class="eq-bar bar-5"></span>
-                    <span class="eq-bar bar-6"></span>
-                    <span class="eq-bar bar-7"></span>
-                    <span class="eq-bar bar-8"></span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quick Audio Action Bar -->
-              <div class="vinyl-action-bar">
-                <button class="vinyl-play-btn" id="l3-play-btn" title="Toggle Audio Playback">
-                  <svg id="l3-play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                  </svg>
-                </button>
-                <div class="vinyl-volume-wrap">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                  </svg>
-                  <input type="range" class="vinyl-volume-slider" id="l3-vol-slider" min="0" max="1" step="0.05" value="0.4">
-                </div>
-              </div>
+        <div class="step-inner-wrap step-images-wrap">
+          
+          <div class="images-section-header">
+            <div class="images-header-pill">
+              <span class="images-pill-dot"></span>
+              <span>ANALOG POLAROID DECK</span>
             </div>
+            <h2 class="images-heading">Captured Moments</h2>
+            <p class="images-subtitle">late night builds • mechanical keys • track days • daily fuel</p>
+          </div>
 
-            <!-- Bento 2: Interactive Draggable Polaroid Photo Deck (Span 6) -->
-            <div class="bento-card bento-polaroid bento-polaroid-deck" id="polaroid-card">
+          <!-- Grand Centerstage Draggable Polaroid Photo Deck -->
+          <div class="polaroid-grand-stage">
+            <div class="bento-polaroid bento-polaroid-deck polaroid-deck-grand" id="polaroid-card">
               <div class="washi-tape washi-top-left"></div>
               <div class="washi-tape washi-top-right"></div>
 
@@ -473,7 +480,7 @@
                   <div class="polaroid-tag-chip" id="polaroid-tag">WORKSPACE</div>
                   <div class="polaroid-date-stamp" id="polaroid-date">'26 10 25</div>
                   <button class="polaroid-zoom-trigger" id="polaroid-zoom-btn" title="Inspect Fullscreen (Lightbox)" aria-label="Open Lightbox">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <polyline points="15 3 21 3 21 9"></polyline>
                       <polyline points="9 21 3 21 3 15"></polyline>
                       <line x1="21" y1="3" x2="14" y2="10"></line>
@@ -491,24 +498,55 @@
                 </div>
               </div>
             </div>
-
-            <!-- Bento 4: Life & Taste Matrix (Span 12) -->
-            <div class="bento-card bento-matrix tilt-card">
-              <div class="bento-card-header">
-                <span class="bento-section-icon">✦</span>
-                <h3 class="bento-card-title">Currently In My Life</h3>
-              </div>
-              <div class="matrix-list" id="l3-matrix-list">
-                <!-- Populated from config -->
-              </div>
-            </div>
-
           </div>
+
+          <!-- Bottom Gallery Navigation Toolbar -->
+          <div class="polaroid-deck-controls">
+            <button class="polaroid-nav-btn" id="polaroid-prev-btn" title="Previous photo" aria-label="Previous photo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              <span>Prev</span>
+            </button>
+            <div class="polaroid-dots-indicator" id="polaroid-dots">
+              <!-- Rendered via JS -->
+            </div>
+            <button class="polaroid-nav-btn" id="polaroid-next-btn" title="Next / Toss photo" aria-label="Next photo">
+              <span>Next / Toss</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
         </div>
       </section>
 
-      <!-- ── STEP 5: GITHUB COMMAND CENTER & FOOTER ── -->
+      <!-- ── STEP 5: CURRENTLY IN MY LIFE (DEDICATED FULL-PAGE SHOWCASE) ── -->
       <section class="l3-step-section" id="l3-step-5" data-step="4">
+        <div class="step-inner-wrap step-matrix-wrap">
+          
+          <div class="matrix-page-header">
+            <div class="matrix-header-pill">
+              <span class="matrix-pill-sparkle">✦</span>
+              <span>DAILY FOCUS &amp; VIBES</span>
+            </div>
+            <h2 class="matrix-page-heading">Currently In My Life</h2>
+            <p class="matrix-page-subtitle">a glimpse into what keeps me dialed in, motivated, and inspired</p>
+          </div>
+
+          <!-- Spacious Matrix Bento Card -->
+          <div class="bento-card bento-matrix-showcase tilt-card">
+            <div class="matrix-list-spacious" id="l3-matrix-list">
+              <!-- Populated from config & JS -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── STEP 6: GITHUB COMMAND CENTER & FOOTER ── -->
+      <section class="l3-step-section" id="l3-step-6" data-step="5">
         <div class="step-inner-wrap step-github-wrap">
           <!-- Bento 6: Live GitHub Activity / Contribution Heatmap -->
           <div class="bento-card bento-github tilt-card">
