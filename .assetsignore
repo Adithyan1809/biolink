@@ -10,6 +10,8 @@ node_modules/**
 test
 test/**
 *.log
+*89mb*
+*_raw*
 .env
 .env.*
 .system_generated

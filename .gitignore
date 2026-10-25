@@ -15,6 +15,10 @@ yarn-error.log*
 # Cloudflare & Wrangler local state
 .wrangler/
 
+# Large raw media files
+*89mb*
+*_raw*
+
 # OS & Editor Files
 .DS_Store
 Thumbs.db
