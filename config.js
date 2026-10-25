@@ -39,8 +39,8 @@ const CONFIG = {
   // ── Video Background (F1 / Red Bull Racing) ──
   videoBackground: {
     enabled: true,                        // Video enabled in the background
-    videoUrl: "assets/F1_video.mp4",      // 3m27s Authentic F1 Racing Video (H.264 FastStart)
-    fallbackUrl: "assets/f1_video.mp4",
+    videoUrl: "assets/f1_video.mp4",      // 3m27s Authentic F1 Racing Video (H.264 FastStart)
+    fallbackUrl: "assets/F1_video.mp4",
     posterImage: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1920&auto=format&fit=crop&q=80",
     
     // ── Video Controls ──
