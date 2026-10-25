@@ -527,74 +527,83 @@
         </div>
       </section>
 
-      <!-- ── STEP 5: CURRENTLY IN MY LIFE & DATING DOSSIER (DEDICATED FULL-PAGE SHOWCASE) ── -->
+      <!-- ── STEP 5: CURRENTLY IN MY LIFE (DEDICATED FULL-PAGE SHOWCASE) ── -->
       <section class="l3-step-section" id="l3-step-5" data-step="4">
         <div class="step-inner-wrap step-matrix-wrap">
           
           <div class="matrix-page-header">
-            <!-- Modern Segmented Pill Switcher -->
-            <div class="life-tab-switcher" role="tablist">
-              <button class="life-tab-btn active" id="tab-btn-focus" role="tab" aria-selected="true" data-tab="focus">
-                <span class="life-tab-icon">✦</span>
-                <span>Daily Focus</span>
-              </button>
-              <button class="life-tab-btn" id="tab-btn-dating" role="tab" aria-selected="false" data-tab="dating">
-                <span class="life-tab-icon">❤️</span>
-                <span>Dating Dossier</span>
-              </button>
+            <div class="matrix-header-pill">
+              <span class="matrix-pill-dot"></span>
+              <span>DAILY FREQUENCY</span>
             </div>
             <h2 class="matrix-page-heading" id="matrix-heading">Currently In My Life</h2>
             <p class="matrix-page-subtitle" id="matrix-subtitle">a glimpse into what keeps me dialed in, motivated, and inspired</p>
           </div>
 
-          <!-- Tab Pane 1: Daily Focus / Life Matrix -->
+          <!-- Daily Focus / Life Matrix Bento Showcase -->
           <div class="bento-card bento-matrix-showcase tilt-card" id="matrix-pane-focus">
             <div class="matrix-list-spacious" id="l3-matrix-list">
               <!-- Populated from config & JS -->
             </div>
           </div>
 
-          <!-- Tab Pane 2: Dating Dossier & Vibe Check -->
-          <div class="bento-card bento-dating-dossier tilt-card" id="matrix-pane-dating" style="display: none;">
-            <div class="dating-dossier-inner">
+        </div>
+      </section>
+
+      <!-- ── STEP 6: OFF THE RECORD (AESTHETIC LIFESTYLE & AFTER-HOURS FREQUENCY) ── -->
+      <section class="l3-step-section" id="l3-step-6" data-step="5">
+        <div class="step-inner-wrap step-offrecord-wrap">
+          
+          <div class="offrecord-page-header">
+            <div class="offrecord-header-pill">
+              <span class="offrecord-pill-dot"></span>
+              <span>AFTER HOURS • BENGALURU</span>
+            </div>
+            <h2 class="offrecord-page-heading">Off The Record</h2>
+            <p class="offrecord-page-subtitle">late night frequencies, spontaneous plans &amp; what makes me tick</p>
+          </div>
+
+          <!-- Off The Record Bento Card -->
+          <div class="bento-card bento-offrecord tilt-card" id="offrecord-card">
+            <div class="offrecord-inner">
               
-              <!-- 1. Three Core Vibe Cards -->
-              <div class="dating-vibes-grid" id="dating-vibes-grid">
+              <!-- 1. Three Core Frequency Cards -->
+              <div class="offrecord-vibes-grid" id="offrecord-vibes-grid">
                 <!-- Populated via JS from config -->
               </div>
 
-              <!-- 2. Green Flags Grid -->
-              <div class="dating-flags-section">
-                <div class="dating-flags-header">
-                  <span class="dating-flags-pill">🟢 GREEN SIGNALS</span>
-                  <span class="dating-flags-title">things that instantly catch my attention</span>
+              <!-- 2. The Wavelength (Subtle Signals) -->
+              <div class="offrecord-wavelength-section">
+                <div class="offrecord-wavelength-header">
+                  <span class="offrecord-wavelength-pill">✦ THE WAVELENGTH</span>
+                  <span class="offrecord-wavelength-title">things that instantly catch my attention</span>
                 </div>
-                <div class="dating-flags-list" id="dating-flags-list">
+                <div class="offrecord-wavelength-list" id="offrecord-wavelength-list">
                   <!-- Populated via JS from config -->
                 </div>
               </div>
 
-              <!-- 3. Interactive First Date Selector (The Icebreaker) -->
-              <div class="dating-first-date-box">
-                <div class="first-date-header">
-                  <span class="first-date-spark">⚡ ICEBREAKER</span>
-                  <h4 class="first-date-heading">Pick Our First Date Idea:</h4>
+              <!-- 3. Spontaneous Plans / Pick The Move -->
+              <div class="offrecord-move-box">
+                <div class="offrecord-move-header">
+                  <span class="offrecord-move-spark">⚡ SPONTANEOUS PLANS</span>
+                  <h4 class="offrecord-move-heading">Pick The Move:</h4>
                 </div>
-                <div class="first-date-options" id="first-date-options">
+                <div class="offrecord-move-options" id="offrecord-move-options">
                   <!-- Populated via JS from config -->
                 </div>
                 
-                <div class="first-date-action-row">
-                  <button class="first-date-send-btn" id="first-date-send-btn">
-                    <span class="send-btn-icon">💬</span>
-                    <span id="first-date-btn-text">Send Option to Adithyan on Instagram</span>
+                <div class="offrecord-action-row">
+                  <button class="offrecord-pitch-btn" id="offrecord-pitch-btn">
+                    <span class="pitch-btn-icon">💬</span>
+                    <span id="offrecord-pitch-text">Pitch this plan to Adithyan</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                   </button>
-                  <a href="https://instagram.com/adithyan_1895" target="_blank" rel="noopener noreferrer" class="dating-dm-direct" title="Slide into DMs">
-                    <span>or direct DM on IG (@adithyan_1895)</span>
+                  <a href="https://instagram.com/adithyan_1895" target="_blank" rel="noopener noreferrer" class="offrecord-dm-direct" title="Message on Instagram">
+                    <span>or direct DM on Instagram (@adithyan_1895) ↗</span>
                   </a>
                 </div>
               </div>
@@ -605,8 +614,8 @@
         </div>
       </section>
 
-      <!-- ── STEP 6: GITHUB COMMAND CENTER & FOOTER ── -->
-      <section class="l3-step-section" id="l3-step-6" data-step="5">
+      <!-- ── STEP 7: GITHUB COMMAND CENTER & FOOTER ── -->
+      <section class="l3-step-section" id="l3-step-7" data-step="6">
         <div class="step-inner-wrap step-github-wrap">
           <!-- Bento 6: Live GitHub Activity / Contribution Heatmap -->
           <div class="bento-card bento-github tilt-card">

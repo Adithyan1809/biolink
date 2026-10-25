@@ -4956,175 +4956,242 @@ html, body {
 
 
 /* ══════════════════════════════════════════════════════════════════════════
-   PERSONAL LIFE ENHANCEMENTS: DATING DOSSIER, LIFE TABS & WEATHER
+   STEP 5: CURRENTLY IN MY LIFE (CLEAN MATRIX SHOWCASE)
    ══════════════════════════════════════════════════════════════════════════ */
+.matrix-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
 
-/* ── Life Tab Switcher (Daily Focus vs Dating Dossier) ── */
-.life-tab-switcher {
+.matrix-header-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px;
+  padding: 4px 12px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 9999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.life-tab-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: #94a3b8;
-  font-family: var(--font-body);
-  font-size: 0.74rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.08em;
+  color: #cbd5e1;
 }
 
-.life-tab-btn:hover {
+.matrix-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+.matrix-page-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.6vh, 1.85rem);
+  font-weight: 800;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-.life-tab-btn.active {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+.matrix-page-subtitle {
+  font-size: clamp(0.72rem, 1.1vh, 0.82rem);
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 500;
 }
 
-.life-tab-btn.active[data-tab="dating"] {
-  background: rgba(225, 6, 0, 0.16);
-  border-color: rgba(225, 6, 0, 0.35);
-  color: #ffffff;
-}
-
-.life-tab-icon {
-  font-size: 0.85rem;
-}
-
-/* ── Dating Dossier Bento Card ── */
-.bento-dating-dossier {
-  width: 100%;
-  padding: clamp(14px, 2vh, 22px);
-  background: rgba(12, 15, 24, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
-  animation: fadeInPane 0.35s ease forwards;
-}
-
-@keyframes fadeInPane {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.dating-dossier-inner {
+/* ══════════════════════════════════════════════════════════════════════════
+   STEP 6: OFF THE RECORD (AESTHETIC LIFESTYLE & AFTER-HOURS FREQUENCY)
+   ══════════════════════════════════════════════════════════════════════════ */
+.step-offrecord-wrap {
+  width: min(880px, 92vw);
+  max-height: calc(100vh - 20px);
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.8vh, 18px);
+  justify-content: center;
+  gap: clamp(8px, 1.4vh, 14px);
+  position: relative;
+  z-index: 2;
+  margin: auto;
 }
 
-/* Three Core Vibe Cards */
-.dating-vibes-grid {
+.offrecord-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.offrecord-header-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  background: rgba(225, 6, 0, 0.10);
+  border: 1px solid rgba(225, 6, 0, 0.28);
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  color: #fca5a5;
+  box-shadow: 0 0 12px rgba(225, 6, 0, 0.15);
+}
+
+.offrecord-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  animation: pulseBeacon 2s infinite ease-in-out;
+}
+
+@keyframes pulseBeacon {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.offrecord-page-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.6vh, 1.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.offrecord-page-subtitle {
+  font-size: clamp(0.72rem, 1.1vh, 0.82rem);
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ── Bento Off The Record Card ── */
+.bento-offrecord {
+  width: 100%;
+  padding: clamp(12px, 1.8vh, 18px);
+  background: rgba(12, 15, 24, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
+}
+
+.offrecord-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 1.5vh, 14px);
+}
+
+/* ── 1. Three Core Frequency Cards ── */
+.offrecord-vibes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-.dating-vibe-card {
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.03);
+.offrecord-vibe-card {
+  padding: 10px 13px;
+  background: rgba(255, 255, 255, 0.028);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 14px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.dating-vibe-card:hover {
+.offrecord-vibe-card:hover {
   background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.16);
   transform: translateY(-2px);
 }
 
-.dating-vibe-top {
+.offrecord-vibe-header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
 }
 
-.dating-vibe-icon {
-  font-size: 1.1rem;
-}
-
-.dating-vibe-title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+.offrecord-vibe-num {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   color: var(--accent-color, #e10600);
+  text-transform: uppercase;
 }
 
-.dating-vibe-desc {
-  font-size: 0.75rem;
-  line-height: 1.4;
+.offrecord-vibe-icon {
+  font-size: 1.05rem;
+}
+
+.offrecord-vibe-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.01em;
+}
+
+.offrecord-vibe-desc {
+  font-size: 0.72rem;
+  line-height: 1.38;
   color: #cbd5e1;
   margin: 0;
 }
 
-/* Green Flags Section */
-.dating-flags-section {
+/* ── 2. The Wavelength (Signals) ── */
+.offrecord-wavelength-section {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.dating-flags-header {
+.offrecord-wavelength-header {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.dating-flags-pill {
+.offrecord-wavelength-pill {
   font-size: 0.64rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  padding: 3px 8px;
+  padding: 2px 8px;
   border-radius: 9999px;
-  background: rgba(34, 197, 94, 0.14);
+  background: rgba(34, 197, 94, 0.12);
   color: #4ade80;
-  border: 1px solid rgba(34, 197, 94, 0.3);
+  border: 1px solid rgba(34, 197, 94, 0.28);
 }
 
-.dating-flags-title {
-  font-size: 0.72rem;
+.offrecord-wavelength-title {
+  font-size: 0.70rem;
   color: #94a3b8;
   font-weight: 500;
 }
 
-.dating-flags-list {
+.offrecord-wavelength-list {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.dating-flag-chip {
-  padding: 5px 11px;
+.offrecord-wave-chip {
+  padding: 4px 10px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.028);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 0.72rem;
+  font-size: 0.70rem;
   color: #e2e8f0;
   display: inline-flex;
   align-items: center;
@@ -5132,13 +5199,13 @@ html, body {
   transition: all 0.2s ease;
 }
 
-.dating-flag-chip:hover {
-  background: rgba(255, 255, 255, 0.07);
+.offrecord-wave-chip:hover {
+  background: rgba(255, 255, 255, 0.065);
   border-color: rgba(34, 197, 94, 0.35);
   color: #ffffff;
 }
 
-.dating-flag-dot {
+.offrecord-wave-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -5146,131 +5213,131 @@ html, body {
   box-shadow: 0 0 6px #22c55e;
 }
 
-/* First Date Box & Selector */
-.dating-first-date-box {
+/* ── 3. Spontaneous Plans (Pick The Move) ── */
+.offrecord-move-box {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
-.first-date-header {
+.offrecord-move-header {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.first-date-spark {
-  font-size: 0.65rem;
+.offrecord-move-spark {
+  font-size: 0.63rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   padding: 2px 7px;
   border-radius: 9999px;
-  background: rgba(234, 179, 8, 0.15);
+  background: rgba(234, 179, 8, 0.14);
   color: #facc15;
-  border: 1px solid rgba(234, 179, 8, 0.3);
+  border: 1px solid rgba(234, 179, 8, 0.28);
 }
 
-.first-date-heading {
-  font-size: 0.78rem;
+.offrecord-move-heading {
+  font-size: 0.74rem;
   font-weight: 700;
   color: #f1f5f9;
   margin: 0;
 }
 
-.first-date-options {
+.offrecord-move-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 
-.first-date-card {
-  padding: 10px 12px;
-  border-radius: 12px;
+.offrecord-move-card {
+  padding: 8px 11px;
+  border-radius: 11px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   cursor: pointer;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
-.first-date-card:hover {
+.offrecord-move-card:hover {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.16);
   transform: translateY(-2px);
 }
 
-.first-date-card.selected {
+.offrecord-move-card.selected {
   background: rgba(225, 6, 0, 0.12);
   border-color: rgba(225, 6, 0, 0.6);
-  box-shadow: 0 4px 18px rgba(225, 6, 0, 0.3);
+  box-shadow: 0 4px 18px rgba(225, 6, 0, 0.28);
 }
 
-.first-date-card.selected::after {
+.offrecord-move-card.selected::after {
   content: "✓";
   position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 0.7rem;
+  top: 7px;
+  right: 9px;
+  font-size: 0.65rem;
   font-weight: 800;
   color: #ffffff;
   background: var(--accent-color, #e10600);
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.first-date-top {
+.move-card-top {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.first-date-opt-icon {
-  font-size: 1rem;
+.move-card-icon {
+  font-size: 0.95rem;
 }
 
-.first-date-opt-title {
-  font-size: 0.74rem;
+.move-card-title {
+  font-size: 0.72rem;
   font-weight: 700;
   color: #f8fafc;
 }
 
-.first-date-opt-sub {
-  font-size: 0.68rem;
-  line-height: 1.35;
+.move-card-sub {
+  font-size: 0.66rem;
+  line-height: 1.32;
   color: #94a3b8;
   margin: 0;
 }
 
-.first-date-action-row {
+.offrecord-action-row {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 2px;
 }
 
-.first-date-send-btn {
+.offrecord-pitch-btn {
   width: 100%;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 8px 16px;
+  border-radius: 11px;
   background: linear-gradient(135deg, #e10600 0%, #b80500 100%);
   color: #ffffff;
   border: none;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 0.80rem;
+  font-size: 0.78rem;
   letter-spacing: 0.02em;
   cursor: pointer;
   display: flex;
@@ -5278,27 +5345,27 @@ html, body {
   justify-content: center;
   gap: 8px;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(225, 6, 0, 0.35);
 }
 
-.first-date-send-btn:hover {
+.offrecord-pitch-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(225, 6, 0, 0.6);
+  box-shadow: 0 6px 20px rgba(225, 6, 0, 0.55);
   filter: brightness(1.1);
 }
 
-.first-date-send-btn:active {
+.offrecord-pitch-btn:active {
   transform: translateY(0);
 }
 
-.dating-dm-direct {
-  font-size: 0.68rem;
+.offrecord-dm-direct {
+  font-size: 0.67rem;
   color: #64748b;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.dating-dm-direct:hover {
+.offrecord-dm-direct:hover {
   color: #cbd5e1;
   text-decoration: underline;
 }
@@ -5314,20 +5381,20 @@ html, body {
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Mobile Responsive Adjustments for Dating Dossier */
+/* Mobile Responsive Adjustments for Off The Record */
 @media (max-width: 640px) {
-  .dating-vibes-grid {
+  .offrecord-vibes-grid {
     grid-template-columns: 1fr;
     gap: 8px;
   }
   
-  .first-date-options {
+  .offrecord-move-options {
     grid-template-columns: 1fr;
     gap: 6px;
   }
   
-  .life-tab-btn {
-    padding: 5px 12px;
-    font-size: 0.70rem;
+  .step-offrecord-wrap {
+    max-height: calc(100vh - 10px);
+    overflow-y: auto;
   }
 }

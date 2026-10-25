@@ -316,56 +316,63 @@ const CONFIG = {
       { category: "READING", icon: "📖", value: "Cyberpunk: Edgerunners & Initial D" }
     ],
 
-    // ── Dating Dossier & Vibe Check ──
-    datingDossier: {
+    // ── Off The Record (Aesthetic Lifestyle & After-Hours Frequency) ──
+    offTheRecord: {
       enabled: true,
-      badge: "VIBE CHECK & DATING DOSSIER",
-      tagline: "skip the awkward small talk • let's see if our vibes align",
+      badge: "AFTER HOURS • BENGALURU",
+      title: "Off The Record",
+      subtitle: "late night frequencies, spontaneous plans & what makes me tick",
       bioCards: [
         {
+          num: "01",
+          label: "01:42 AM PROTOCOL",
           icon: "🏎️",
-          title: "Weekend Energy",
-          desc: "Late night drives with heavy 808 beats, F1 telemetry debates, or finding niche rooftop cafes."
+          title: "Night Drive Therapy",
+          desc: "Late night highway runs with heavy 808 beats, F1 telemetry debates, or finding niche rooftop spots."
         },
         {
+          num: "02",
+          label: "DAILY FUEL",
           icon: "☕",
-          title: "The Coffee Clause",
+          title: "The Coffee Standard",
           desc: "Will gladly cross town for specialty iced pour-overs or dark roast espresso. Severe coffee snob."
         },
         {
+          num: "03",
+          label: "CURATED SOUND",
           icon: "🎧",
-          title: "Aux Cord Guarantee",
-          desc: "Zero skip anxiety. Curated blend of drift phonk, R&B, indie, and midnight synth."
+          title: "The Aux Cord Rule",
+          desc: "Zero skip anxiety. Curated blend of drift phonk, R&B, late-night indie, and midnight synth."
         }
       ],
-      greenFlags: [
+      wavelength: [
         "Has a personal obsession or creative project you can talk about for hours",
         "Sends Spotify tracks with 'you have to drop everything and hear this'",
         "Down for spontaneous 11 PM dessert, chai, or highway runs",
         "Competitive banter & high-speed go-kart lap battles",
         "Doesn't take life or themselves too seriously"
       ],
-      firstDateOptions: [
+      moveOptions: [
         {
           id: "cafe",
           icon: "☕",
           title: "Specialty Cafe Crawl",
           subtitle: "Third-wave iced brews & banter in Indiranagar",
-          icebreaker: "Hey Adithyan! Saw your website vibe check — I'm picking Option A: Specialty Cafe Crawl ☕✨"
+          icebreaker: "Hey Adithyan! Saw your site — I'm picking the move: Specialty Cafe Crawl ☕✨"
         },
         {
           id: "gokart",
           icon: "🏎️",
           title: "Go-Kart Lap Battle",
           subtitle: "High-speed apex duel. Loser buys waffles and coffee",
-          icebreaker: "Hey Adithyan! Saw your website vibe check — I'm challenging you to Option B: Go-Kart Lap Battle 🏎️🧇"
+          icebreaker: "Hey Adithyan! Saw your site — I'm challenging you to: Go-Kart Lap Battle 🏎️🧇"
         },
         {
           id: "nightdrive",
           icon: "🌙",
-          title: "Midnight Phonk Drive",
-          subtitle: "Windows down, city lights, cold breeze & street food stop",
-          icebreaker: "Hey Adithyan! Saw your website vibe check — let's do Option C: Midnight Phonk Drive 🌙🏎️"
+          title: "Midnight City Drive",
+          subtitle: "Windows down, cold breeze, 808 beats & street food stop",
+          icebreaker: "Hey Adithyan! Saw your site — let's do the Midnight City Drive 🌙🏎️"
         }
       ],
       instagramHandle: "adithyan_1895",
@@ -550,7 +557,7 @@ const CONFIG = {
       ]
     },
 
-    // ── Step Scrolling System (6 Discrete Steps) ──
+    // ── Step Scrolling System (7 Discrete Steps) ──
     stepScrolling: {
       enabled: true,
       throttleMs: 650,
@@ -560,7 +567,8 @@ const CONFIG = {
         { id: "l3-step-3", name: "Favourite Tracks" },
         { id: "l3-step-4", name: "Visual Journal" },
         { id: "l3-step-5", name: "Currently In My Life" },
-        { id: "l3-step-6", name: "GitHub & Footer" }
+        { id: "l3-step-6", name: "Off The Record" },
+        { id: "l3-step-7", name: "GitHub & Footer" }
       ]
     }
   }

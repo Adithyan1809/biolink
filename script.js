@@ -1123,8 +1123,8 @@ function populateLayout3(cfg = {}) {
   // ── 8. Weather Widget (Matching User Image 1) ──
   populateWeather(l3Data.weather || cfg.weather);
 
-  // ── 8a. Life Tabs & Dating Dossier Showcase ──
-  initLifeTabsAndDating(l3Data.datingDossier || cfg.datingDossier);
+  // ── 8a. Off The Record Showcase (Dedicated Step 6) ──
+  initOffTheRecordPage(l3Data.offTheRecord || l3Data.datingDossier || cfg.offTheRecord);
 
   // ── 8b. About Me Live Widgets (Stats.fm, Discord, Timezone Clock) ──
   initAboutMeWidgets(cfg);
@@ -1519,111 +1519,83 @@ function populateWeather(wCfg = {}) {
 }
 
 /* --------------------------------------------------------------------------
-   13b. Life Tabs & Dating Dossier Showcase
+   13b. Off The Record Showcase (Dedicated Step 6)
 -------------------------------------------------------------------------- */
-function initLifeTabsAndDating(dossierCfg = {}) {
-  const tabFocus = document.getElementById("tab-btn-focus");
-  const tabDating = document.getElementById("tab-btn-dating");
-  const paneFocus = document.getElementById("matrix-pane-focus");
-  const paneDating = document.getElementById("matrix-pane-dating");
-  const heading = document.getElementById("matrix-heading");
-  const subtitle = document.getElementById("matrix-subtitle");
-
-  if (!tabFocus || !tabDating || !paneFocus || !paneDating) return;
-
-  function switchTab(target) {
-    if (target === "dating") {
-      tabDating.classList.add("active");
-      tabDating.setAttribute("aria-selected", "true");
-      tabFocus.classList.remove("active");
-      tabFocus.setAttribute("aria-selected", "false");
-      paneFocus.style.display = "none";
-      paneDating.style.display = "block";
-      if (heading) heading.textContent = "Dating Dossier & Vibe Check";
-      if (subtitle) subtitle.textContent = dossierCfg.tagline || "skip the awkward small talk • let's see if our vibes align";
-    } else {
-      tabFocus.classList.add("active");
-      tabFocus.setAttribute("aria-selected", "true");
-      tabDating.classList.remove("active");
-      tabDating.setAttribute("aria-selected", "false");
-      paneDating.style.display = "none";
-      paneFocus.style.display = "block";
-      if (heading) heading.textContent = "Currently In My Life";
-      if (subtitle) subtitle.textContent = "a glimpse into what keeps me dialed in, motivated, and inspired";
-    }
-  }
-
-  tabFocus.addEventListener("click", () => switchTab("focus"));
-  tabDating.addEventListener("click", () => switchTab("dating"));
+function initOffTheRecordPage(offCfg = {}) {
+  if (!offCfg) return;
 
   // 1. Populate Core Vibe Cards
-  const vibesGrid = document.getElementById("dating-vibes-grid");
-  if (vibesGrid && dossierCfg.bioCards) {
-    vibesGrid.innerHTML = dossierCfg.bioCards.map((b) => `
-      <div class="dating-vibe-card">
-        <div class="dating-vibe-top">
-          <span class="dating-vibe-icon">${b.icon}</span>
-          <span class="dating-vibe-title">${b.title}</span>
+  const vibesGrid = document.getElementById("offrecord-vibes-grid");
+  const bioCards = offCfg.bioCards || [];
+  if (vibesGrid && bioCards.length) {
+    vibesGrid.innerHTML = bioCards.map((b) => `
+      <div class="offrecord-vibe-card">
+        <div class="offrecord-vibe-header">
+          <span class="offrecord-vibe-num">${b.label || b.num || '01'}</span>
+          <span class="offrecord-vibe-icon">${b.icon}</span>
         </div>
-        <p class="dating-vibe-desc">${b.desc}</p>
+        <span class="offrecord-vibe-title">${b.title}</span>
+        <p class="offrecord-vibe-desc">${b.desc}</p>
       </div>
     `).join("");
   }
 
-  // 2. Populate Green Flags List
-  const flagsList = document.getElementById("dating-flags-list");
-  if (flagsList && dossierCfg.greenFlags) {
-    flagsList.innerHTML = dossierCfg.greenFlags.map((f) => `
-      <span class="dating-flag-chip">
-        <span class="dating-flag-dot"></span>
-        <span>${f}</span>
+  // 2. Populate The Wavelength List
+  const waveList = document.getElementById("offrecord-wavelength-list");
+  const waveItems = offCfg.wavelength || offCfg.greenFlags || [];
+  if (waveList && waveItems.length) {
+    waveList.innerHTML = waveItems.map((item) => `
+      <span class="offrecord-wave-chip">
+        <span class="offrecord-wave-dot"></span>
+        <span>${item}</span>
       </span>
     `).join("");
   }
 
-  // 3. Populate & Connect First Date Options (The Icebreaker)
-  const optionsContainer = document.getElementById("first-date-options");
-  const sendBtn = document.getElementById("first-date-send-btn");
-  const btnText = document.getElementById("first-date-btn-text");
+  // 3. Populate & Connect Move Options (Interactive Adventure Picker)
+  const optionsContainer = document.getElementById("offrecord-move-options");
+  const pitchBtn = document.getElementById("offrecord-pitch-btn");
+  const pitchText = document.getElementById("offrecord-pitch-text");
+  const moveOptions = offCfg.moveOptions || offCfg.firstDateOptions || [];
 
-  let selectedOption = dossierCfg.firstDateOptions?.[0] || null;
+  let selectedOption = moveOptions[0] || null;
 
-  if (optionsContainer && dossierCfg.firstDateOptions) {
-    optionsContainer.innerHTML = dossierCfg.firstDateOptions.map((opt, idx) => `
-      <div class="first-date-card${idx === 0 ? " selected" : ""}" data-idx="${idx}">
-        <div class="first-date-top">
-          <span class="first-date-opt-icon">${opt.icon}</span>
-          <span class="first-date-opt-title">${opt.title}</span>
+  if (optionsContainer && moveOptions.length) {
+    optionsContainer.innerHTML = moveOptions.map((opt, idx) => `
+      <div class="offrecord-move-card${idx === 0 ? " selected" : ""}" data-idx="${idx}">
+        <div class="move-card-top">
+          <span class="move-card-icon">${opt.icon}</span>
+          <span class="move-card-title">${opt.title}</span>
         </div>
-        <p class="first-date-opt-sub">${opt.subtitle}</p>
+        <p class="move-card-sub">${opt.subtitle}</p>
       </div>
     `).join("");
 
-    const cards = optionsContainer.querySelectorAll(".first-date-card");
+    const cards = optionsContainer.querySelectorAll(".offrecord-move-card");
     cards.forEach((card, idx) => {
       card.addEventListener("click", () => {
         cards.forEach((c) => c.classList.remove("selected"));
         card.classList.add("selected");
-        selectedOption = dossierCfg.firstDateOptions[idx];
-        if (btnText && selectedOption) {
-          btnText.textContent = `Send "${selectedOption.title}" Invite on Instagram`;
+        selectedOption = moveOptions[idx];
+        if (pitchText && selectedOption) {
+          pitchText.textContent = `Pitch "${selectedOption.title}" to Adithyan`;
         }
       });
     });
   }
 
-  if (sendBtn) {
-    sendBtn.addEventListener("click", () => {
+  if (pitchBtn) {
+    pitchBtn.addEventListener("click", () => {
       if (!selectedOption) return;
-      const icebreaker = selectedOption.icebreaker || `Hey Adithyan! Saw your website vibe check — I pick: ${selectedOption.title} 🏎️☕`;
+      const icebreaker = selectedOption.icebreaker || `Hey Adithyan! Saw your site — I'm picking: ${selectedOption.title} 🏎️☕`;
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(icebreaker).catch(() => {});
       }
       if (typeof showToast === "function") {
-        showToast("Icebreaker copied! Opening Adithyan's Instagram DMs... 💬");
+        showToast("Plan copied! Opening Adithyan's Instagram DMs... 💬");
       }
       setTimeout(() => {
-        const url = dossierCfg.instagramDmUrl || "https://ig.me/m/adithyan_1895";
+        const url = offCfg.instagramDmUrl || "https://ig.me/m/adithyan_1895";
         window.open(url, "_blank", "noopener,noreferrer");
       }, 650);
     });
